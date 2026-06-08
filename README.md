@@ -65,8 +65,6 @@ All dashboards are interactive – filters, highlight actions, and URL actions (
 - **Key tables:** Orders, Returns, People (managers), Shipping costs
 - **Preprocessing:** No external ETL – all transformations (calculated fields, aliases) are embedded in the `.twb` file.
 
-> ⚠️ **Note:** The original data file is **not** included in this repository. You can obtain a similar dataset from [Tableau Community](https://community.tableau.com/s/question/0D54T00000CWeX8SAL/sample-superstore-sales-excelxls) or use your own superstore data with matching column names.
-
 ---
 
 ## 🛠️ How to Use
