@@ -5,6 +5,8 @@
 
 **An interactive Tableau dashboard suite that transforms raw superstore sales data into actionable insights about profit, delays, discounts, and operational performance across markets, managers, and product categories.**
 
+🔗 Github link : https://j019.github.io/Global-Superstore-Analytics-Dashboard/
+
 [<img width="1838" height="739" alt="Home Page" src="https://github.com/user-attachments/assets/2e111233-7fa4-4931-8174-aa9ebfb16e08" />](https://github.com/j019/Global-Superstore-Analytics-Dashboard/blob/main/Home%20Page.png)
   
 
