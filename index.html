@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Global Superstore Analytics Dashboard | Tableau BI Suite</title>
+  <meta name="description" content="Interactive Tableau dashboard suite transforming superstore sales data into actionable insights on profit, delays, discounts, and performance across markets, managers & categories.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* header */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+    }
+
+    .tagline {
+      font-size: 1.125rem;
+      color: #334155;
+      max-width: 780px;
+      margin: 0 auto 1.8rem auto;
+      font-weight: 400;
+    }
+
+    .dashboard-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #1e3a5f;
+      color: white;
+      padding: 0.7rem 1.8rem;
+      border-radius: 6px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+      font-size: 0.95rem;
+    }
+    .dashboard-link:hover {
+      background: #0f2c47;
+    }
+
+    .screenshot-wrapper {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin: 2rem 0 2.5rem;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+    .screenshot-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .screenshot-caption {
+      padding: 0.6rem 1.2rem;
+      background: #fefefe;
+      font-size: 0.85rem;
+      color: #475569;
+      border-top: 1px solid #edf2f7;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 2.5rem 0 1rem 0;
+      letter-spacing: -0.2px;
+      border-left: 4px solid #2c6e9e;
+      padding-left: 1rem;
+      color: #0f172a;
+    }
+
+    .section-sub {
+      color: #475569;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0 1rem;
+    }
+    .feature-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid #eef2f6;
+      transition: box-shadow 0.15s;
+    }
+    .feature-card i {
+      font-size: 1.6rem;
+      color: #2c6e9e;
+      margin-bottom: 0.75rem;
+    }
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      color: #475569;
+      font-size: 0.9rem;
+    }
+
+    table {
+      width: 100%;
+      background: white;
+      border-radius: 12px;
+      border-collapse: collapse;
+      overflow: hidden;
+      margin: 1.5rem 0 1rem;
+      border: 1px solid #eef2f6;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1px solid #eef2f6;
+    }
+    th {
+      background-color: #f9fafb;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .metrics-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+    .metrics-list li {
+      background: white;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid #e2e8f0;
+    }
+
+    .color-swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-right: 1rem;
+    }
+    .swatch {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    hr {
+      margin: 2rem 0;
+      border: none;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    /* Let's Connect section */
+    .connect-section {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0 1rem;
+      border: 1px solid #e9edf2;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+    .connect-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #0f172a;
+    }
+    .connect-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      row-gap: 1rem;
+    }
+    .connect-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: #1e3a5f;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .connect-item i {
+      font-size: 1.2rem;
+      width: 1.5rem;
+      color: #2c6e9e;
+    }
+    .connect-item:hover {
+      color: #0f2c47;
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding: 1.5rem 0 1rem;
+      border-top: 1px solid #e2e8f0;
+      color: #5b6e8c;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .tagline {
+        font-size: 0.95rem;
+      }
+      .section-title {
+        font-size: 1.3rem;
+      }
+      th, td {
+        padding: 0.7rem;
+        font-size: 0.85rem;
+      }
+      .connect-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  
+  <!-- Header -->
+  <div class="hero">
+    <h1>Global Superstore Analytics Dashboard</h1>
+    <p class="tagline">
+      An interactive Tableau dashboard suite that transforms raw superstore sales data into actionable insights about profit, delays, discounts, and operational performance across markets, managers, and product categories.
+    </p>
+    <a class="dashboard-link" href="https://public.tableau.com/app/profile/jatin.valecha/viz/Superstore_project_17802904775670/HomePage" target="_blank" rel="noopener">
+      <i class="fas fa-chart-line"></i> Launch Live Dashboard <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <!-- Main screenshot -->
+  <div class="screenshot-wrapper">
+    <img 
+      src="https://github.com/user-attachments/assets/2e111233-7fa4-4931-8174-aa9ebfb16e08" 
+      alt="Home Page dashboard – Global Superstore Analytics Dashboard overview"
+      onerror="this.src='https://placehold.co/1200x600/1e2a3a/white?text=Dashboard+Preview';"
+    >
+    <div class="screenshot-caption">
+      <i class="fas fa-home"></i> Home Page – Central navigation hub with interactive filters and KPIs.
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <div>
+    <div class="section-title">Overview</div>
+    <p style="margin-bottom: 1rem;">This project delivers a complete business intelligence solution built on the <strong>Global Superstore</strong> dataset. It features <strong>25+ worksheets, 11 dashboards</strong>, and numerous calculated fields that empower stakeholders to:</p>
+    <ul style="margin-left: 1.6rem; color: #1e293b; display: flex; flex-wrap: wrap; gap: 0.8rem; list-style: none;">
+      <li style="background:#eff6ff; padding:0.3rem 1rem; border-radius:30px;">Monitor KPIs (revenue, profit, quantity, delays)</li>
+      <li style="background:#eff6ff; padding:0.3rem 1rem; border-radius:30px;">Analyze profit ratios & discount effectiveness</li>
+      <li style="background:#eff6ff; padding:0.3rem 1rem; border-radius:30px;">Identify loss-making segments & delayed orders</li>
+      <li style="background:#eff6ff; padding:0.3rem 1rem; border-radius:30px;">Drill down by region, manager, category, country</li>
+      <li style="background:#eff6ff; padding:0.3rem 1rem; border-radius:30px;">Compare annual profit trends (2019–2022)</li>
+    </ul>
+    <p style="margin-top: 1.2rem;">All dashboards are interactive — filters, highlight actions, and URL actions (e.g., Wikipedia lookup for countries) provide an intuitive exploration experience.</p>
+  </div>
+
+  <!-- Core dashboards table -->
+  <div>
+    <div class="section-title">Core Dashboards</div>
+    <table>
+      <thead>
+        <tr><th>Dashboard</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Home Page</strong></td><td>Central navigation hub</td></tr>
+        <tr><td><strong>Profit Analysis Dashboard</strong></td><td>Profit ratio, profit status, and category breakdown</td></tr>
+        <tr><td><strong>Sales Analysis Dashboard</strong></td><td>Sales over time, by category, city, and state</td></tr>
+        <tr><td><strong>Category Analysis</strong></td><td>Sales and net sales per product category</td></tr>
+        <tr><td><strong>KPI Analysis by Country / Sub‑category</strong></td><td>Country‑level and sub‑category performance metrics</td></tr>
+        <tr><td><strong>Monthly Loss Analysis by Market</strong></td><td>Track loss counts and total quantity lost per market</td></tr>
+        <tr><td><strong>Average Discount Analysis By Region</strong></td><td>Discount distribution and its impact</td></tr>
+        <tr><td><strong>Analysis By Manager Dashboard</strong></td><td>Profit and discount performance per manager</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Key Metrics & Calculated Fields -->
+  <div>
+    <div class="section-title">Key Metrics (Calculated Fields)</div>
+    <div class="features-grid">
+      <div class="feature-card"><i class="fas fa-chart-pie"></i><h3>Profit Status</h3><p>Labels each row as <code>Profit</code>, <code>Loss</code>, or <code>No Loss No Profit</code>.</p></div>
+      <div class="feature-card"><i class="fas fa-percent"></i><h3>Profit Ratio</h3><p><code>SUM(Profit) / SUM(Revenue)</code> — overall margin indicator.</p></div>
+      <div class="feature-card"><i class="fas fa-calendar-day"></i><h3>Delay Days</h3><p>DATEDIFF between expected & actual ship dates.</p></div>
+      <div class="feature-card"><i class="fas fa-truck"></i><h3>No. of Delayed Orders</h3><p>Count of orders with <code>Delay Days &gt; 0</code>.</p></div>
+      <div class="feature-card"><i class="fas fa-chart-line"></i><h3>Annual Profit (2019-2022)</h3><p>Separate fields for year-over-year profit tracking.</p></div>
+      <div class="feature-card"><i class="fas fa-layer-group"></i><h3>Profit Ratio Category</h3><p>Tier classification: C1 (≥0.25), C2, etc.</p></div>
+    </div>
+    <div class="section-sub">Additional metrics: <strong>Total Revenue, Total Profit, Total Shipping Cost, Total Quantity, No. of Orders, No. of Customers, No. of Return Orders, Avg Discount, Avg Delay Days</strong>.</div>
+  </div>
+
+  <!-- Interactive Actions & Design -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.8rem 0;">
+    <div style="background: white; border-radius: 12px; padding: 1.2rem 1.5rem; border: 1px solid #eef2f6;">
+      <i class="fas fa-sliders-h" style="font-size: 1.4rem; color:#2c6e9e;"></i>
+      <h3 style="margin: 0.8rem 0 0.5rem; font-size: 1.1rem;">Interactive Actions</h3>
+      <ul style="padding-left: 1.2rem; color: #2c3e50;">
+        <li>Filters – Segment, Order Priority, Market, Region, Sub‑Category, Country, Manager</li>
+        <li>Highlight Action – dynamic mark selection</li>
+        <li>URL Action – opens Wikipedia page for selected country</li>
+      </ul>
+    </div>
+    <div style="background: white; border-radius: 12px; padding: 1.2rem 1.5rem; border: 1px solid #eef2f6;">
+      <i class="fas fa-palette" style="font-size: 1.4rem; color:#2c6e9e;"></i>
+      <h3 style="margin: 0.8rem 0 0.5rem; font-size: 1.1rem;">Visual Identity</h3>
+      <p style="margin-bottom: 0.5rem; font-size:0.9rem;">Custom color palette:</p>
+      <div>
+        <span class="color-swatch"><span class="swatch" style="background: #1170aa;"></span> #1170aa</span>
+        <span class="color-swatch"><span class="swatch" style="background: #fc7d0b;"></span> #fc7d0b</span>
+        <span class="color-swatch"><span class="swatch" style="background: #a3acb9;"></span> #a3acb9</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Source -->
+  <div>
+    <div class="section-title">Data Source & Preparation</div>
+    <div style="background: white; border-radius: 12px; padding: 1.2rem 1.5rem; border: 1px solid #edf2f7;">
+      <p><strong>Name:</strong> <code>Orders+ (Global Superstore)</code> — Excel/CSV (standard Superstore dataset).</p>
+      <p><strong>Key tables:</strong> Orders, Returns, People (managers), Shipping costs.</p>
+      <p><strong>Preprocessing:</strong> No external ETL — all transformations (calculated fields, aliases, hierarchies) are embedded inside the <code>.twb</code> file.</p>
+    </div>
+  </div>
+
+  <!-- Dashboard Interactions Highlights -->
+  <div>
+    <div class="section-title">Dashboard Interactions & Highlights</div>
+    <ul style="margin: 0 0 1rem 1.4rem;">
+      <li><strong>Filter Quantity By Segment & Order Priority</strong> – interactive segregation</li>
+      <li><strong>Filter losses by Market</strong> – isolate loss-making zones</li>
+      <li><strong>Filter KPIs By Sub-Category / Country</strong> – granular drill-downs</li>
+      <li><strong>Show Country Wikipedia Page</strong> – external URL action adds context</li>
+      <li><strong>Highlight 1 (generated)</strong> – dynamic highlighting across charts</li>
+    </ul>
+    <div class="section-sub" style="margin-top: -0.5rem;">All 11 dashboards are linked via consistent filter actions, enabling cross-dashboard exploration.</div>
+  </div>
+
+  <hr>
+
+  <!-- Let's Connect Section (professional) -->
+  <div class="connect-section">
+    <div class="connect-title">Let's Connect</div>
+    <div class="connect-links">
+      <a href="https://j019.github.io" class="connect-item" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i> j019.github.io
+      </a>
+      <a href="https://www.linkedin.com/in/jatin-valecha/" class="connect-item" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-linkedin"></i> linkedin.com/in/jatin-valecha
+      </a>
+      <a href="mailto:20jatinvalecha@gmail.com" class="connect-item">
+        <i class="fas fa-envelope"></i> 20jatinvalecha@gmail.com
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Global Superstore Analytics Dashboard — built with Tableau Desktop & Tableau Public</p>
+    <p style="margin-top: 0.4rem;">MIT License — free to use, adapt, and share with attribution.</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="https://public.tableau.com/app/profile/jatin.valecha/viz/Superstore_project_17802904775670/HomePage" target="_blank">Tableau Public Dashboard</a> • 
+      <a href="https://github.com/j019/Global-Superstore-Analytics-Dashboard" target="_blank">GitHub Repository</a>
+    </p>
+  </footer>
+</div>
+</body>
+</html>
