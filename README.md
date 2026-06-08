@@ -5,9 +5,10 @@
 
 **An interactive Tableau dashboard suite that transforms raw superstore sales data into actionable insights about profit, delays, discounts, and operational performance across markets, managers, and product categories.**
 
-![Dashboard Preview](<img width="1838" height="739" alt="Home Page" src="https://github.com/user-attachments/assets/2e111233-7fa4-4931-8174-aa9ebfb16e08" />
+![Dashboard Preview]([<img width="1838" height="739" alt="Home Page" src="https://github.com/user-attachments/assets/2e111233-7fa4-4931-8174-aa9ebfb16e08" />](https://github.com/j019/Global-Superstore-Analytics-Dashboard/blob/main/Home%20Page.png)
 )  
 
+🔗 Dashboard link : (https://public.tableau.com/app/profile/jatin.valecha/viz/Superstore_project_17802904775670/HomePage)
 
 ---
 
@@ -73,6 +74,4 @@ All dashboards are interactive – filters, highlight actions, and URL actions (
 ### Prerequisites
 - **Tableau Desktop** (version 2020.2 or later – the `.twb` file is XML‑based and should be compatible)
 - (Optional) **Tableau Public** – to publish online
-
-Dashboard link : (https://public.tableau.com/app/profile/jatin.valecha/viz/Superstore_project_17802904775670/HomePage)
   
